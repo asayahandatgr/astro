@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* Global base styles tailored for the site */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--c-navy);
+  color: #ffffff;
+  font-family: "Press Start 2P", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --c-cyan: #34c5ed;
+  --c-pink: #f16ca0;
+  --c-flame: #f15e22;
+  --c-orange: #faa51b;
+  --c-green: #2daa61;
+  --c-purple: #856cb0;
+  --c-red: #ee252d;
+  --c-yellow: #fcee25;
+  --c-navy: #000000;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* dia ubah dari sini */
+/* 8-bit hero animations and utilities */
+.pixel-shadow { text-shadow: 0 3px 0 #000; }
+.glow-text { text-shadow: 0 0 10px rgba(52,197,237,.5), 0 0 18px rgba(252,238,37,.4); }
+
+/* Animated gradient text */
+.anim-gradient-text {
+  background-image: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-cyan));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Blinking prompt style */
+.anim-blink { animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { 50% { opacity: .45; } }
+
+/* Floating decor */
+.anim-float-slow { animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Pixel border buttons */
+.pixel-border { box-shadow: 0 0 0 3px #000, 0 4px 0 0 #000; border-radius: 2px; }
+
+/* Subtle starfield */
+.starfield { position: absolute; inset: 0; pointer-events: none; }
+.starfield::before,
+.starfield::after { content: ""; position: absolute; inset: -50%; background: radial-gradient(#ffffff 1px, transparent 1px) 0 0/4px 4px; opacity: .08; animation: starDrift 60s linear infinite; }
+.starfield::after { background: radial-gradient(#ffffff 1px, transparent 1px) 0 0/6px 6px; opacity: .06; animation-duration: 90s; }
+@keyframes starDrift { from { transform: translateY(0); } to { transform: translateY(50%); } }
+
+/* Pixel cloud horizontal scroll */
+.pixel-clouds { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.cloud-row { position: absolute; left: 0; width: 200%; display: flex; gap: 8px; animation: scrollLeft 40s linear infinite; }
+.cloud-row.fast { animation-duration: 25s; }
+.cloud-row.slow { animation-duration: 60s; }
+@keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Simple pixel “cloud” square */
+.cloud-sq { width: 8px; height: 8px; background: rgba(255,255,255,.12); box-shadow: 8px 0 rgba(255,255,255,.12), 16px 0 rgba(255,255,255,.12), 24px 0 rgba(255,255,255,.12); }
+
+/* CRT scanlines overlay */
+.scanlines { position: fixed; inset: 0; pointer-events: none; mix-blend-mode: overlay; background: repeating-linear-gradient( to bottom, rgba(255,255,255,.04) 0px, rgba(255,255,255,.04) 1px, rgba(0,0,0,0) 3px, rgba(0,0,0,0) 4px ); opacity: .2; animation: crtFlicker 5s ease-in-out infinite; }
+@keyframes crtFlicker { 0%,100% { opacity: .18; } 50% { opacity: .24; } }
+
+/* Star twinkle */
+.twinkle { animation: twinkle 2.2s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .2; } 50% { opacity: .9; } }
+
+/* Glow utilities and fade animations */
+.glow-green { text-shadow: 0 0 8px rgba(45,170,97,.7), 0 0 14px rgba(45,170,97,.5); }
+.animate-fade-in { animation: fadeIn .6s ease-out both; }
+.animate-fade-out { animation: fadeOut .4s ease-in forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
